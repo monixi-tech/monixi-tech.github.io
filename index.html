@@ -1,0 +1,943 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Monixi</title>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+</head>
+<style>
+body {
+    font-family: Arial, sans-serif;
+    background: #ffffff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: none;
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+        /* Navigation Bar */
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 60px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 20px;
+            background: rgba(255, 255, 255, 0.15); /* Transparent white */
+            backdrop-filter: blur(10px); /* Blurry effect */
+            box-shadow: 0 6px 10px rgba(0, 0, 0, 0.5);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+            margin-top: 0%;
+            padding: 1rem;
+            position: fixed;
+            width: 80%;
+            left: 7%;
+            transform: translateX(-20);
+            top:0rem;
+            border-radius: 30px;
+            right: 6px;
+            margin: 20px;
+            transition: width .75s ease;
+            overflow: hidden;
+        }
+
+        /* Branding Name */
+        .rainbow-text {
+            font-family: 'Raleway', sans-serif;
+            font-size: 32px;
+            font-weight: bold;
+            color: rgb(0, 30, 255);
+            text-transform: capitalize;
+            letter-spacing: 3px;
+            overflow: hidden; /* Hide text while typing */
+            white-space: nowrap; /* Prevent text from wrapping */
+            border-right: 4px solid white; /* Cursor effect */
+            width: 0;
+            animation: typing 4s steps(12) 1s forwards, blink 1.5s step-end infinite;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+
+
+        /* Typing Animation */
+        @keyframes typing {
+            from {
+                width: 0%;
+            }
+            to {
+                width: 26%;
+            }
+        }
+
+        /* Blinking Cursor Effect */
+        @keyframes blink {
+            10% {
+                border-color: transparent;
+            }
+        }
+
+        /* Navigation Links */
+        .nav-links {
+            list-style: none;
+            display: flex;
+        }
+
+        .nav-links li {
+            cursor: pointer;
+            transition: all 0.3 ease;
+            margin-right: 70px;
+        }
+
+        .nav-links a {
+            display: block;
+            left: 100px;
+            text-decoration: none;
+            color: rgb(255, 255, 255);
+            font-size: 15px;
+            transition: 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: rgba(0, 0, 0, 0.0338);
+        }
+
+        /* Mobile Menu Icon (Optional) */
+        .menu-icon {
+            display: none;
+            font-size: 24px;
+            color: white;
+            cursor: pointer;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none; /* Hide links on small screens */
+            }
+            .menu-icon {
+                display: block; /* Show menu icon */
+            }
+        }
+
+        /* Navigation Buttons */
+.nav-links {
+    display: flex;
+    gap: 15px;
+    list-style: none;
+}
+
+.nav-links button {
+    background: white;
+    border: none;
+    padding: 10px 15px;
+    font-size: 16px;
+    font-weight: bold;
+    color: #003cff;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: 0.3s;
+}
+
+.nav-links button:hover {
+    color: #ddd;
+    backdrop-filter: blur(10px); /* Blurry effect */
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+    background: rgba(255, 255, 255, 0.15); /* Transparent white */
+    box-shadow: 0 6px 10px rgba(0, 0, 0, 0.5);
+}
+
+/* Mobile Menu Icon */
+.menu-icon {
+    font-size: 24px;
+    cursor: pointer;
+    display: none;
+}
+
+.lesson-grid {
+    background-color: #ffffff;
+    border-radius: 12px;
+    padding: 15px 20px 15px 20px;
+    box-shadow: -2px -0px 15px rgb(0, 51, 255);
+    position: relative;
+}
+
+.grid::after, .grid::before {
+    content: '';
+    position: absolute;
+    background-color: #ffffff;
+    border-radius: 12px;
+    padding: 15px 20px 15px 20px;
+    box-shadow: -2px -0px 15px rgb(0, 51, 255);
+    animation: 4s spin linear infinite;
+    background-image: conic-gradient(from var(--angle),#ea2027,#f6ff62, #44bd32, #18dcff, #3742fa, #ea2027); 
+    translate: -50% -50%;
+    z-index: -1;
+    border-radius: 10px;
+}
+
+.lesson-card {
+    background-color: #ffffff;
+    border-radius: 12px;
+    padding: 15px 20px 15px 20px;
+    box-shadow: -2px -0px 15px rgb(0, 51, 255);
+}
+
+h3 {
+    margin-bottom: 15px;
+    font-size: 20px;
+    color: #333;
+}
+
+p {
+    font-size: 16px;
+    color: #000000;
+    margin-top: 50px;
+}
+
+.grid-container {
+    margin: 100px; /* Adds space outside all elements */
+    padding: 50px; /* Adds space inside all elements */
+    box-sizing: border-box; /* Ensures padding doesn't affect total size */
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: repeat(4, 170px); /* 4 rows, each 150px high */
+    gap: 40px; /* Space between grid items */
+}
+
+@media (max-width: 768px) {
+    .lesson-grid {
+        grid-template-columns: repeat(2, 1fr); /* 2 columns on smaller screens */
+    }
+}
+
+@media (max-width: 480px) {
+    .lesson-grid {
+        grid-template-columns: repeat(1, 1fr); /* 1 column on mobile */
+    }
+}
+
+
+.progress-container {
+    width: 100%;
+    background-color: #ddd;
+    border-radius: 8px;
+    overflow: hidden;
+    height: 20px;
+    
+}
+
+.progress-bar {
+    height: 100%;
+    background-color: #432effd7; /* Green */
+    width: 50%; /* Change dynamically */
+    transition: width 0.5s ease-in-out;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+}
+
+.progress-number {
+    font-size: 14px;
+    font-weight: bold;
+    color: rgb(0, 0, 255);
+    position: absolute;
+    left: 240px;
+}
+
+.lesson-button {
+    background-color: #4CAF50;
+    border: none;
+    color: white;
+    padding: 12px 24px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 15px;
+    border-radius: 20px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    margin-top: 15px;
+width: 100%;
+}
+
+.lesson-button:hover {
+    background-color: #000000;
+    transform: scale(0.8);
+}
+
+.lesson-button:active {
+    background-color: #ffffff;
+}
+
+.lock-icon-button {
+    position: absolute;
+    bottom: 310px;
+    right: 580px;
+    font-size: 18px;
+    border-radius: 15px;
+}
+.purchase-btn {
+    background-color: transparent;
+    color: #ff0000;
+    font-size: 16px;
+    border:none;
+    transition: all 0.3s;
+    padding: 12px 24px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    border-radius: 50px;
+    cursor: pointer;
+    margin-top: 15px;
+    width: 100%;
+}
+
+.purchase-btn:hover {
+    background-color: #ff0000d2;
+    color: rgb(255, 255, 255);
+} 
+
+.cart-btn {
+    background-color: transparent;
+    color: #ff0000;
+    font-size: 16px;
+    border:none;
+    transition: all 0.3s;
+    padding: 12px 24px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    border-radius: 50px;
+    cursor: pointer;
+    margin-top: 15px;
+    width: 100%;
+    align-items: center;
+    gap: 8px;
+    transition: background-color 0.3s, transform 0.2s;
+}
+
+.cart-btn:hover {
+    background-color: #ff0000d2;
+    color: rgb(255, 255, 255);
+} 
+
+</style>
+<body>
+
+    <nav class="navbar">
+        <div class="rainbow-text">Monixi Academy</div>
+        <ul class="nav-links">
+        <a href="index.html"><button class="loadPageButton" data-page="amasomo">Amasomo</button></a>
+            <button class="loadPageButton" data-page="ahabanza">Ahabanza</button>
+            <button class="loadPageButton" data-page="ibyerekeye">Ibyerekeye</button>
+            <a href="Hamagara.html"><button class="loadPageButton" data-page="hamagara">Hamagara</button></a>
+        </ul>
+        <div class="menu-icon">&#9776;</div>
+    </nav>
+ <!-- Content area where new "pages" will load -->
+ <div id="content">
+    <main>
+        <div class="grid-container">    
+                <div class="lesson-grid">
+                    <h3>Isomo 00: Ibyibanze</h3>
+                        <div class="progress-container">
+                            <div class="progress-bar">
+                                <span class="progress-number"></span>
+                            </div>
+                        </div>
+                        <a href="Inyuguti.html"><button class="lesson-button">Tangira Isomo</button></a>
+                </div>
+
+                <div class="lesson-card locked">
+                    <h3>Isomo 01: Intangiriro</h3>
+                        <div class="completion-bar">
+                            <div class="completion-bar">
+                                <span class="compretion-number"></span>
+                            </div>
+                        </div>
+                                <button class="purchase-btn">Ishyura
+                                    <span class="lock-icon">&#128274;</span>
+                                </button>
+                </div>
+
+                <div class="lesson-card locked">
+                    <h3>Isomo 02: Insuhuzanyo</h3>
+                    <div class="completion-bar">
+                        <div class="completion-bar">
+                            <span class="compretion-number"></span>
+                        </div>
+                    </div>
+                                <button class="cart-btn">Ishyura
+                                    <span class="lock-icon">&#128274;</span>
+                                </button>
+                </div>
+
+                <div class="lesson-grid locked">
+                    <h3>Isomo 03: Amabara</h3>
+                    <div class="completion-bar">
+                        <div class="completion-bar">
+                            <span class="compretion-number"></span>
+                        </div>
+                    </div>
+                                <button class="cart-btn">Ishyura
+                                    <span class="lock-icon">&#128274;</span>
+                                </button>
+                </div>
+
+                <div class="lesson-grid locked">
+                    <h3>Isomo 04: Guhaha</h3>
+                    <div class="completion-bar">
+                        <div class="completion-bar">
+                            <span class="compretion-number"></span>
+                        </div>
+                    </div>
+                                <button class="cart-btn">Ishyura
+                                    <span class="lock-icon">&#128274;</span>
+                                </button>
+                </div>
+
+                <div class="lesson-grid locked">
+                    <h3>Isomo 05: Impitagihe</h3>
+                    <div class="completion-bar">
+                        <div class="completion-bar">
+                            <span class="compretion-number"></span>
+                        </div>
+                    </div>
+                                <button class="cart-btn">Ishyura
+                                    <span class="lock-icon">&#128274;</span>
+                                </button>
+                </div>
+                <div class="lesson-grid locked">
+                    <h3>Isomo 06: Indagihe</h3>
+                    <div class="completion-bar">
+                        <div class="completion-bar">
+                            <span class="compretion-number"></span>
+                        </div>
+                    </div>
+                                <button class="cart-btn">Ishyura
+                                    <span class="lock-icon">&#128274;</span>
+                                </button>
+                </div>
+
+                <div class="lesson-grid locked">
+                    <h3>Isomo 07: Inzagihe</h3>
+                    <div class="completion-bar">
+                        <div class="completion-bar">
+                            <span class="compretion-number"></span>
+                        </div>
+                    </div>
+                                <button class="cart-btn">Ishyura
+                                    <span class="lock-icon">&#128274;</span>
+                                </button>
+                </div>
+                <div class="lesson-grid locked">
+                    <h3>Isomo 08: Amafunguro</h3>
+                    <div class="completion-bar">
+                        <div class="completion-bar">
+                            <span class="compretion-number"></span>
+                        </div>
+                    </div>
+                                <button class="cart-btn">Ishyura
+                                    <span class="lock-icon">&#128274;</span>
+                                </button>
+                </div>
+
+                <div class="lesson-grid locked">
+                    <h3>Isomo 09: Iwacu</h3>
+                    <div class="completion-bar">
+                        <div class="completion-bar">
+                            <span class="compretion-number"></span>
+                        </div>
+                    </div>
+                                <button class="cart-btn">Ishyura
+                                    <span class="lock-icon">&#128274;</span>
+                                </button>
+                </div>
+
+                <div class="lesson-grid locked">
+                    <h3>Isomo 10: Ubuzima</h3>
+                    <div class="completion-bar">
+                        <div class="completion-bar">
+                            <span class="compretion-number"></span>
+                        </div>
+                    </div>
+                                <button class="cart-btn">Ishyura
+                                    <span class="lock-icon">&#128274;</span>
+                                </button>
+                </div>
+                <div class="lesson-grid locked">
+                    <h3>Isomo 11: Burimunsi</h3>
+                    <div class="completion-bar">
+                        <div class="completion-bar">
+                            <span class="compretion-number"></span>
+                        </div>
+                    </div>
+                                <button class="cart-btn">Ishyura
+                                    <span class="lock-icon">&#128274;</span>
+                                </button>
+                </div>
+
+                <div class="lesson-grid locked">
+                    <h3>Isomo 12: Ahantu</h3>
+                    <div class="completion-bar">
+                        <div class="completion-bar">
+                            <span class="compretion-number"></span>
+                        </div>
+                    </div>
+                                <button class="cart-btn">Ishyura
+                                    <span class="lock-icon">&#128274;</span>
+                                </button>
+                </div>
+                <div class="lesson-grid locked">
+                    <h3>Isomo 13: Urugendo</h3>
+                    <div class="completion-bar">
+                        <div class="completion-bar">
+                            <span class="compretion-number"></span>
+                        </div>
+                    </div>
+                                <button class="cart-btn">Ishyura
+                                    <span class="lock-icon">&#128274;</span>
+                                </button>
+                </div>
+
+                <div class="lesson-grid locked">
+                    <h3>Isomo 14: Imyidagaduro</h3>
+                    <div class="completion-bar">
+                        <div class="completion-bar">
+                            <span class="compretion-number"></span>
+                        </div>
+                    </div>
+                                <button class="cart-btn">Ishyura
+                                    <span class="lock-icon">&#128274;</span>
+                                </button>
+                </div>
+
+                <div class="lesson-grid locked">
+                    <h3>Isomo 15: m'Umugi</h3>
+                    <div class="completion-bar">
+                        <div class="completion-bar">
+                            <span class="compretion-number"></span>
+                        </div>
+                    </div>
+                                <button class="cart-btn">Ishyura
+                                    <span class="lock-icon">&#128274;</span>
+                                </button>
+                </div>
+                <div class="lesson-grid locked">
+                    <h3>Isomo 16: Ishuri</h3>
+                    <div class="completion-bar">
+                        <div class="completion-bar">
+                            <span class="compretion-number"></span>
+                        </div>
+                    </div>
+                                <button class="cart-btn">Ishyura
+                                    <span class="lock-icon">&#128274;</span>
+                                </button>
+                </div>
+
+                <div class="lesson-grid locked">
+                    <h3>Isomo 17: Inganda</h3>
+                    <div class="completion-bar">
+                        <div class="completion-bar">
+                            <span class="compretion-number"></span>
+                        </div>
+                    </div>
+                                <button class="cart-btn">Ishyura
+                                    <span class="lock-icon">&#128274;</span>
+                                </button>
+                </div>
+                <div class="lesson-grid locked">
+                    <h3>Isomo 18: Ubuhanzi</h3>
+                    <div class="completion-bar">
+                        <div class="completion-bar">
+                            <span class="compretion-number"></span>
+                        </div>
+                    </div>
+                                <button class="cart-btn">Ishyura
+                                    <span class="lock-icon">&#128274;</span>
+                                </button>
+                </div>
+
+                <div class="lesson-grid locked">
+                    <h3>Isomo 19: Ibyihutirwa</h3>
+                    <div class="completion-bar">
+                        <div class="completion-bar">
+                            <span class="compretion-number"></span>
+                        </div>
+                    </div>
+                                <button class="cart-btn">Ishyura
+                                    <span class="lock-icon">&#128274;</span>
+                                </button>
+                </div>
+                <div class="lesson-grid locked">
+                    <h3>Isomo 20: Abaturage</h3>
+                    <div class="completion-bar">
+                        <div class="completion-bar">
+                            <span class="compretion-number"></span>
+                        </div>
+                    </div>
+                                <button class="cart-btn">Ishyura
+                                    <span class="lock-icon">&#128274;</span>
+                                </button>
+                </div>
+                <div class="lesson-grid locked">
+                    <h3>Isomo 21: Akazi</h3>
+                    <div class="completion-bar">
+                        <div class="completion-bar">
+                            <span class="compretion-number"></span>
+                        </div>
+                    </div>
+                                <button class="cart-btn">Ishyura
+                                    <span class="lock-icon">&#128274;</span>
+                                </button>
+                </div>
+                <div class="lesson-grid locked">
+                    <h3>Isomo 22: Uburyo</h3>
+                    <div class="completion-bar">
+                        <div class="completion-bar">
+                            <span class="compretion-number"></span>
+                        </div>
+                    </div>
+                                <button class="cart-btn">Ishyura
+                                    <span class="lock-icon">&#128274;</span>
+                                </button>
+                </div>
+                <div class="lesson-grid locked">
+                    <h3>Isomo 23: Umwuga</h3>
+                    <div class="completion-bar">
+                        <div class="completion-bar">
+                            <span class="compretion-number"></span>
+                        </div>
+                    </div>
+                                <button class="cart-btn">Ishyura
+                                    <span class="lock-icon">&#128274;</span>
+                                </button>
+                </div>
+        </div>
+        </div>
+    </main>
+</div>
+   
+    <script>
+        const button = document.querySelector('.button');
+        button.addEventListener('mouseover', (event) =>{
+            const x = event.pageX - button.offsetLeft;
+            const y = event.pagey -  button.offsetTop;
+
+            button.style.setProperty('--x', x + "px" );
+            button.style.setProperty('--y', y + "px" );
+        })
+        // Toggle the mobile menu
+        function toggleMenu() {
+            const menu = document.querySelector('.nav-links');
+            menu.classList.toggle('active');
+        }
+
+        document.querySelectorAll(".loadPageButton").forEach(button => {
+            button.addEventListener("click", function() {
+                let page = this.getAttribute("data-page");
+                let contentDiv = document.getElementById("content");
+
+                // Define different pages
+                let pages = {
+                    "amasomo": `   <main>
+        <div class="grid-container">    
+                <div class="lesson-grid">
+                    <h3>Isomo 00: Ibyibanze</h3>
+                        <div class="progress-container">
+                            <div class="progress-bar">
+                                <span class="progress-number"></span>
+                            </div>
+                        </div>
+                                <button class="lesson-button">Tangira Isomo</button>
+                </div>
+
+                <div class="lesson-card locked">
+                    <h3>Isomo 01: Intangiriro</h3>
+                        <div class="completion-bar">
+                            <div class="completion-bar">
+                                <span class="compretion-number"></span>
+                            </div>
+                        </div>
+                                <button class="purchase-btn">Ishyura
+                                    <span class="lock-icon">&#128274;</span>
+                                </button>
+                </div>
+
+                <div class="lesson-card locked">
+                    <h3>Isomo 02: Insuhuzanyo</h3>
+                    <div class="completion-bar">
+                        <div class="completion-bar">
+                            <span class="compretion-number"></span>
+                        </div>
+                    </div>
+                                <button class="cart-btn">Ishyura
+                                    <span class="lock-icon">&#128274;</span>
+                                </button>
+                </div>
+
+                <div class="lesson-grid locked">
+                    <h3>Isomo 03: Amabara</h3>
+                    <div class="completion-bar">
+                        <div class="completion-bar">
+                            <span class="compretion-number"></span>
+                        </div>
+                    </div>
+                                <button class="cart-btn">Ishyura
+                                    <span class="lock-icon">&#128274;</span>
+                                </button>
+                </div>
+
+                <div class="lesson-grid locked">
+                    <h3>Isomo 04: Guhaha</h3>
+                    <div class="completion-bar">
+                        <div class="completion-bar">
+                            <span class="compretion-number"></span>
+                        </div>
+                    </div>
+                                <button class="cart-btn">Ishyura
+                                    <span class="lock-icon">&#128274;</span>
+                                </button>
+                </div>
+
+                <div class="lesson-grid locked">
+                    <h3>Isomo 05: Impitagihe</h3>
+                    <div class="completion-bar">
+                        <div class="completion-bar">
+                            <span class="compretion-number"></span>
+                        </div>
+                    </div>
+                                <button class="cart-btn">Ishyura
+                                    <span class="lock-icon">&#128274;</span>
+                                </button>
+                </div>
+                <div class="lesson-grid locked">
+                    <h3>Isomo 06: Indagihe</h3>
+                    <div class="completion-bar">
+                        <div class="completion-bar">
+                            <span class="compretion-number"></span>
+                        </div>
+                    </div>
+                                <button class="cart-btn">Ishyura
+                                    <span class="lock-icon">&#128274;</span>
+                                </button>
+                </div>
+
+                <div class="lesson-grid locked">
+                    <h3>Isomo 07: Inzagihe</h3>
+                    <div class="completion-bar">
+                        <div class="completion-bar">
+                            <span class="compretion-number"></span>
+                        </div>
+                    </div>
+                                <button class="cart-btn">Ishyura
+                                    <span class="lock-icon">&#128274;</span>
+                                </button>
+                </div>
+                <div class="lesson-grid locked">
+                    <h3>Isomo 08: Amafunguro</h3>
+                    <div class="completion-bar">
+                        <div class="completion-bar">
+                            <span class="compretion-number"></span>
+                        </div>
+                    </div>
+                                <button class="cart-btn">Ishyura
+                                    <span class="lock-icon">&#128274;</span>
+                                </button>
+                </div>
+
+                <div class="lesson-grid locked">
+                    <h3>Isomo 09: Iwacu</h3>
+                    <div class="completion-bar">
+                        <div class="completion-bar">
+                            <span class="compretion-number"></span>
+                        </div>
+                    </div>
+                                <button class="cart-btn">Ishyura
+                                    <span class="lock-icon">&#128274;</span>
+                                </button>
+                </div>
+
+                <div class="lesson-grid locked">
+                    <h3>Isomo 10: Ubuzima</h3>
+                    <div class="completion-bar">
+                        <div class="completion-bar">
+                            <span class="compretion-number"></span>
+                        </div>
+                    </div>
+                                <button class="cart-btn">Ishyura
+                                    <span class="lock-icon">&#128274;</span>
+                                </button>
+                </div>
+                <div class="lesson-grid locked">
+                    <h3>Isomo 11: Burimunsi</h3>
+                    <div class="completion-bar">
+                        <div class="completion-bar">
+                            <span class="compretion-number"></span>
+                        </div>
+                    </div>
+                                <button class="cart-btn">Ishyura
+                                    <span class="lock-icon">&#128274;</span>
+                                </button>
+                </div>
+
+                <div class="lesson-grid locked">
+                    <h3>Isomo 12: Ahantu</h3>
+                    <div class="completion-bar">
+                        <div class="completion-bar">
+                            <span class="compretion-number"></span>
+                        </div>
+                    </div>
+                                <button class="cart-btn">Ishyura
+                                    <span class="lock-icon">&#128274;</span>
+                                </button>
+                </div>
+                <div class="lesson-grid locked">
+                    <h3>Isomo 13: Urugendo</h3>
+                    <div class="completion-bar">
+                        <div class="completion-bar">
+                            <span class="compretion-number"></span>
+                        </div>
+                    </div>
+                                <button class="cart-btn">Ishyura
+                                    <span class="lock-icon">&#128274;</span>
+                                </button>
+                </div>
+
+                <div class="lesson-grid locked">
+                    <h3>Isomo 14: Imyidagaduro</h3>
+                    <div class="completion-bar">
+                        <div class="completion-bar">
+                            <span class="compretion-number"></span>
+                        </div>
+                    </div>
+                                <button class="cart-btn">Ishyura
+                                    <span class="lock-icon">&#128274;</span>
+                                </button>
+                </div>
+
+                <div class="lesson-grid locked">
+                    <h3>Isomo 15: m'Umugi</h3>
+                    <div class="completion-bar">
+                        <div class="completion-bar">
+                            <span class="compretion-number"></span>
+                        </div>
+                    </div>
+                                <button class="cart-btn">Ishyura
+                                    <span class="lock-icon">&#128274;</span>
+                                </button>
+                </div>
+                <div class="lesson-grid locked">
+                    <h3>Isomo 16: Ishuri</h3>
+                    <div class="completion-bar">
+                        <div class="completion-bar">
+                            <span class="compretion-number"></span>
+                        </div>
+                    </div>
+                                <button class="cart-btn">Ishyura
+                                    <span class="lock-icon">&#128274;</span>
+                                </button>
+                </div>
+
+                <div class="lesson-grid locked">
+                    <h3>Isomo 17: Inganda</h3>
+                    <div class="completion-bar">
+                        <div class="completion-bar">
+                            <span class="compretion-number"></span>
+                        </div>
+                    </div>
+                                <button class="cart-btn">Ishyura
+                                    <span class="lock-icon">&#128274;</span>
+                                </button>
+                </div>
+                <div class="lesson-grid locked">
+                    <h3>Isomo 18: Ubuhanzi</h3>
+                    <div class="completion-bar">
+                        <div class="completion-bar">
+                            <span class="compretion-number"></span>
+                        </div>
+                    </div>
+                                <button class="cart-btn">Ishyura
+                                    <span class="lock-icon">&#128274;</span>
+                                </button>
+                </div>
+
+                <div class="lesson-grid locked">
+                    <h3>Isomo 19: Ibyihutirwa</h3>
+                    <div class="completion-bar">
+                        <div class="completion-bar">
+                            <span class="compretion-number"></span>
+                        </div>
+                    </div>
+                                <button class="cart-btn">Ishyura
+                                    <span class="lock-icon">&#128274;</span>
+                                </button>
+                </div>
+                <div class="lesson-grid locked">
+                    <h3>Isomo 20: Abaturage</h3>
+                    <div class="completion-bar">
+                        <div class="completion-bar">
+                            <span class="compretion-number"></span>
+                        </div>
+                    </div>
+                                <button class="cart-btn">Ishyura
+                                    <span class="lock-icon">&#128274;</span>
+                                </button>
+                </div>
+                <div class="lesson-grid locked">
+                    <h3>Isomo 21: Akazi</h3>
+                    <div class="completion-bar">
+                        <div class="completion-bar">
+                            <span class="compretion-number"></span>
+                        </div>
+                    </div>
+                                <button class="cart-btn">Ishyura
+                                    <span class="lock-icon">&#128274;</span>
+                                </button>
+                </div>
+                <div class="lesson-grid locked">
+                    <h3>Isomo 22: Uburyo</h3>
+                    <div class="completion-bar">
+                        <div class="completion-bar">
+                            <span class="compretion-number"></span>
+                        </div>
+                    </div>
+                                <button class="cart-btn">Ishyura
+                                    <span class="lock-icon">&#128274;</span>
+                                </button>
+                </div>
+                <div class="lesson-grid locked">
+                    <h3>Isomo 23: Umwuga</h3>
+                    <div class="completion-bar">
+                        <div class="completion-bar">
+                            <span class="compretion-number"></span>
+                        </div>
+                    </div>
+                                <button class="cart-btn">Ishyura
+                                    <span class="lock-icon">&#128274;</span>
+                                </button>
+                </div>
+        </div>
+        </div>
+    </main>`,
+                    "ahabanza": `<h2>Ahabanza</h2><p>Murakaza neza kuri Monixi Academy!</p>`,
+                    "ibyerekeye": ` <h2>Ibyerekeye</h2><p>Twandikire cyangwa uduhamagare.</p>`,
+                    "hamagara": `<h2>Hamagara</h2><p>Twandikire cyangwa uduhamagare.</p>`
+                };
+
+                // Load the selected page content
+                contentDiv.innerHTML = pages[page] || "<h2>Page not found</h2>";
+            });
+        });
+
+    </script>
+
+</body>
+</html>

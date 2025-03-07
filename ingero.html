@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="rw">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Imyitozo</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #fce4ec;
+            padding: 20px;
+        }
+        .container {
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+        }
+        h2 {
+            color: #333;
+        }
+        .exercise {
+            margin: 20px 0;
+        }
+        .images, .words {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+        .images img, .words button {
+            width: 100px;
+            height: auto;
+            cursor: pointer;
+        }
+        .words {
+            margin-top: 20px;
+        }
+        .words button {
+            padding: 10px;
+            font-size: 16px;
+        }
+        .matched {
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+        }
+        .words button:disabled {
+            background-color: #ccc;
+            cursor: not-allowed;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Imyitozo</h2>
+        
+        <div class="exercise">
+            <p><strong>1. Erekana amashusho arimo ijwi <span style="color: green;">i</span>.</strong></p>
+            <div class="images">
+                <img src="imana.jpg" alt="Pointing hand" data-word="Imana">
+                <img src="abana.jpg" alt="Egg" data-word="abana">
+                <img src="table.png" alt="Table" data-word="Ihogoza">
+                <img src="motorcycle.png" alt="Motorcycle" data-word="umupira">
+                <img src="saw.png" alt="Saw" data-word="amatara">
+                <img src="umuriro.jpg" alt="Tree" data-word="umuriro">
+            </div>
+        </div>
+
+        <div class="exercise">
+            <p><strong>2. Erekana inyajwi <span style="color: green;">i</span> nto mu magambo akurikira.</strong></p>
+            <div class="words">
+                <button data-word="Imana" onclick="checkMatch(this)">Imana</button>
+                <button data-word="abana" onclick="checkMatch(this)">abana</button>
+                <button data-word="Ihogoza" onclick="checkMatch(this)">Ihogoza</button>
+                <button data-word="umupira" onclick="checkMatch(this)">umupira</button>
+                <button data-word="amatara" onclick="checkMatch(this)">amatara</button>
+                <button data-word="umuriro" onclick="checkMatch(this)">umuriro</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Function to handle the matching logic
+        function checkMatch(button) {
+            const word = button.getAttribute('data-word');
+            const image = document.querySelector(`.images img[data-word="${word}"]`);
+            if (image) {
+                image.style.border = '2px solid green';
+                button.classList.add('matched');
+                button.disabled = true;
+            }
+        }
+    </script>
+</body>
+</html>
